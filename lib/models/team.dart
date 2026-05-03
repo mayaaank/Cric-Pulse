@@ -1,7 +1,3 @@
-enum MatchStatus { live, upcoming, completed }
-
-enum MatchFormat { t20, odi, test }
-
 class Team {
   final String id;
   final String name;
