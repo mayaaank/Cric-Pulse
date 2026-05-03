@@ -1,9 +1,9 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'home/home_screen.dart';
-import 'live_scores/live_scores_screen.dart';
-import 'matches/matches_screen.dart';
-import 'rankings/rankings_screen.dart';
-import 'settings/settings_screen.dart';
+import 'leaderboard/leaderboard_screen.dart';
+import 'predict/predict_screen.dart';
+import 'chat/chat_screen.dart';
 
 class ShellScreen extends StatefulWidget {
   const ShellScreen({super.key});
@@ -17,10 +17,9 @@ class _ShellScreenState extends State<ShellScreen> {
 
   final _screens = const [
     HomeScreen(),
-    LiveScoresScreen(),
-    MatchesScreen(),
-    RankingsScreen(),
-    SettingsScreen(),
+    LeaderboardScreen(),
+    PredictScreen(),
+    ChatScreen(),
   ];
 
   @override
@@ -32,21 +31,158 @@ class _ShellScreenState extends State<ShellScreen> {
         index: _currentIndex,
         children: _screens,
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: cs.surfaceContainerLow,
-          border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.06))),
+      extendBody: true,
+      bottomNavigationBar: _FloatingBottomNav(
+        currentIndex: _currentIndex,
+        onTap: (i) => setState(() => _currentIndex = i),
+        cs: cs,
+      ),
+    );
+  }
+}
+
+class _FloatingBottomNav extends StatelessWidget {
+  final int currentIndex;
+  final ValueChanged<int> onTap;
+  final ColorScheme cs;
+
+  const _FloatingBottomNav({
+    required this.currentIndex,
+    required this.onTap,
+    required this.cs,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(28),
+        topRight: Radius.circular(28),
+      ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        child: Container(
+          padding: const EdgeInsets.only(top: 12, bottom: 28, left: 24, right: 24),
+          decoration: BoxDecoration(
+            color: Colors.black.withValues(alpha: 0.2),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(28),
+              topRight: Radius.circular(28),
+            ),
+            border: Border(
+              top: BorderSide(color: Colors.white.withValues(alpha: 0.1)),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.5),
+                blurRadius: 40,
+                offset: const Offset(0, -10),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _NavItem(
+                icon: Icons.home,
+                isActive: currentIndex == 0,
+                onTap: () => onTap(0),
+                cs: cs,
+              ),
+              _NavItem(
+                icon: Icons.emoji_events,
+                isActive: currentIndex == 1,
+                onTap: () => onTap(1),
+                cs: cs,
+              ),
+              // Center predict button — raised blue circle
+              _PredictButton(
+                isActive: currentIndex == 2,
+                onTap: () => onTap(2),
+                cs: cs,
+              ),
+              _NavItem(
+                icon: Icons.smart_toy,
+                isActive: currentIndex == 3,
+                onTap: () => onTap(3),
+                cs: cs,
+              ),
+            ],
+          ),
         ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (i) => setState(() => _currentIndex = i),
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.scoreboard_outlined), activeIcon: Icon(Icons.scoreboard), label: 'Live'),
-            BottomNavigationBarItem(icon: Icon(Icons.sports_cricket_outlined), activeIcon: Icon(Icons.sports_cricket), label: 'Matches'),
-            BottomNavigationBarItem(icon: Icon(Icons.leaderboard_outlined), activeIcon: Icon(Icons.leaderboard), label: 'Rankings'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings_outlined), activeIcon: Icon(Icons.settings), label: 'Settings'),
-          ],
+      ),
+    );
+  }
+}
+
+class _NavItem extends StatelessWidget {
+  final IconData icon;
+  final bool isActive;
+  final VoidCallback onTap;
+  final ColorScheme cs;
+
+  const _NavItem({
+    required this.icon,
+    required this.isActive,
+    required this.onTap,
+    required this.cs,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: AnimatedScale(
+        scale: isActive ? 1.1 : 1.0,
+        duration: const Duration(milliseconds: 150),
+        child: SizedBox(
+          width: 48,
+          height: 48,
+          child: Icon(
+            icon,
+            color: isActive ? Colors.white : Colors.grey.shade600,
+            size: 26,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PredictButton extends StatelessWidget {
+  final bool isActive;
+  final VoidCallback onTap;
+  final ColorScheme cs;
+
+  const _PredictButton({
+    required this.isActive,
+    required this.onTap,
+    required this.cs,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedScale(
+        scale: isActive ? 1.1 : 1.0,
+        duration: const Duration(milliseconds: 150),
+        child: Container(
+          width: 52,
+          height: 52,
+          decoration: BoxDecoration(
+            color: cs.primaryContainer,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: cs.primaryContainer.withValues(alpha: 0.4),
+                blurRadius: 15,
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: const Icon(Icons.gps_fixed, color: Colors.white, size: 26),
         ),
       ),
     );

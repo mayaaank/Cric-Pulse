@@ -1,0 +1,258 @@
+[
+  {
+    "id": "q1",
+    "question": "Which country won the first-ever Cricket World Cup in 1975?",
+    "options": ["Australia", "England", "West Indies", "India"],
+    "correctIndex": 2,
+    "explanation": "West Indies won the inaugural Cricket World Cup held in England in 1975.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q2",
+    "question": "What is the maximum number of overs in a T20 innings?",
+    "options": ["15", "20", "25", "50"],
+    "correctIndex": 1,
+    "explanation": "T20 stands for Twenty20, meaning each team bats for a maximum of 20 overs.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q3",
+    "question": "Who holds the record for the highest individual score in ODI cricket?",
+    "options": ["Sachin Tendulkar", "Rohit Sharma", "Martin Guptill", "Chris Gayle"],
+    "correctIndex": 1,
+    "explanation": "Rohit Sharma holds the record with 264 runs against Sri Lanka in 2014.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q4",
+    "question": "What does 'LBW' stand for in cricket?",
+    "options": ["Left Before Wicket", "Leg Before Wicket", "Left Bat Warning", "Leg Bat Wicket"],
+    "correctIndex": 1,
+    "explanation": "LBW stands for Leg Before Wicket, a mode of dismissal.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q5",
+    "question": "Which bowler has taken the most wickets in Test cricket history?",
+    "options": ["Shane Warne", "Muttiah Muralitharan", "James Anderson", "Anil Kumble"],
+    "correctIndex": 1,
+    "explanation": "Muttiah Muralitharan holds the record with 800 Test wickets.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q6",
+    "question": "How many players are on the field for the fielding team?",
+    "options": ["9", "10", "11", "12"],
+    "correctIndex": 2,
+    "explanation": "The fielding team has 11 players on the field.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q7",
+    "question": "What is a 'maiden over' in cricket?",
+    "options": ["An over with 6 wickets", "An over with no runs scored", "An over with only boundaries", "The first over of the match"],
+    "correctIndex": 1,
+    "explanation": "A maiden over is one in which no runs are scored off the bat.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q8",
+    "question": "Which ground is known as the 'Home of Cricket'?",
+    "options": ["Eden Gardens", "MCG", "Lord's", "The Oval"],
+    "correctIndex": 2,
+    "explanation": "Lord's Cricket Ground in London is famously known as the Home of Cricket.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q9",
+    "question": "What is a 'hat-trick' in cricket?",
+    "options": ["Three catches in a row", "Three sixes in a row", "Three wickets on three consecutive balls", "Three run-outs in an innings"],
+    "correctIndex": 2,
+    "explanation": "A hat-trick is when a bowler takes three wickets on three consecutive deliveries.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q10",
+    "question": "Who scored the fastest century in ODI cricket?",
+    "options": ["Chris Gayle", "AB de Villiers", "Shahid Afridi", "Corey Anderson"],
+    "correctIndex": 1,
+    "explanation": "AB de Villiers scored a century in just 31 balls against the West Indies in 2015.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "q11",
+    "question": "What is the Duckworth-Lewis-Stern (DLS) method used for?",
+    "options": ["Calculating bowling averages", "Determining run rates", "Revising targets in rain-affected matches", "Selecting playing XI"],
+    "correctIndex": 2,
+    "explanation": "DLS is a mathematical formulation to calculate targets in rain-interrupted limited-overs matches.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q12",
+    "question": "Which country has won the most Cricket World Cups?",
+    "options": ["India", "West Indies", "Australia", "England"],
+    "correctIndex": 2,
+    "explanation": "Australia has won the Cricket World Cup 6 times.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q13",
+    "question": "What does 'DRS' stand for?",
+    "options": ["Direct Review System", "Decision Review System", "Delivery Review System", "Digital Review Standard"],
+    "correctIndex": 1,
+    "explanation": "DRS stands for Decision Review System, used to challenge umpire decisions.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q14",
+    "question": "How many runs are awarded for hitting the ball over the boundary without bouncing?",
+    "options": ["4", "5", "6", "8"],
+    "correctIndex": 2,
+    "explanation": "A six is awarded when the ball clears the boundary rope without bouncing.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q15",
+    "question": "Who is known as the 'God of Cricket'?",
+    "options": ["Virat Kohli", "Sachin Tendulkar", "Brian Lara", "Sir Don Bradman"],
+    "correctIndex": 1,
+    "explanation": "Sachin Tendulkar is widely known as the 'God of Cricket' for his legendary career.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q16",
+    "question": "What is a 'nightwatchman' in cricket?",
+    "options": ["A player who fields at night", "A lower-order batsman sent to bat late in the day", "The umpire who checks the stumps", "A substitute fielder"],
+    "correctIndex": 1,
+    "explanation": "A nightwatchman is a lower-order batsman promoted to protect specialist batsmen near close of play.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q17",
+    "question": "Which batsman scored 400 not out in a Test innings?",
+    "options": ["Sachin Tendulkar", "Matthew Hayden", "Brian Lara", "Virender Sehwag"],
+    "correctIndex": 2,
+    "explanation": "Brian Lara scored an unbeaten 400 against England in 2004, the highest individual Test score.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "q18",
+    "question": "In which year was the first T20 World Cup held?",
+    "options": ["2005", "2007", "2009", "2003"],
+    "correctIndex": 1,
+    "explanation": "The first ICC World Twenty20 was held in South Africa in 2007, won by India.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q19",
+    "question": "What is a 'googly' in cricket?",
+    "options": ["A fast bouncer", "A leg-spinner's delivery that turns the opposite way", "A type of catch", "A fielding position"],
+    "correctIndex": 1,
+    "explanation": "A googly is a deceptive delivery bowled by a leg-spinner that turns from off to leg.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q20",
+    "question": "Which Indian cricketer is known as 'Captain Cool'?",
+    "options": ["Virat Kohli", "Rohit Sharma", "MS Dhoni", "Sourav Ganguly"],
+    "correctIndex": 2,
+    "explanation": "MS Dhoni is famously known as 'Captain Cool' for his calm demeanor on the field.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q21",
+    "question": "What is the 'Powerplay' in limited-overs cricket?",
+    "options": ["A time when only spin bowlers can bowl", "Mandatory fielding restrictions in certain overs", "Extra time added for slow over rate", "A penalty for bad behavior"],
+    "correctIndex": 1,
+    "explanation": "The Powerplay is a set of overs with mandatory fielding restrictions, allowing only 2 fielders outside the 30-yard circle.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q22",
+    "question": "Who bowled the famous 'Ball of the Century'?",
+    "options": ["Glenn McGrath", "Shane Warne", "Wasim Akram", "Curtly Ambrose"],
+    "correctIndex": 1,
+    "explanation": "Shane Warne bowled the 'Ball of the Century' to Mike Gatting in the 1993 Ashes series.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "q23",
+    "question": "How many stumps make up a cricket wicket?",
+    "options": ["2", "3", "4", "5"],
+    "correctIndex": 1,
+    "explanation": "A wicket consists of 3 stumps and 2 bails.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q24",
+    "question": "What is the distance between the two sets of stumps on a cricket pitch?",
+    "options": ["18 yards", "20 yards", "22 yards", "24 yards"],
+    "correctIndex": 2,
+    "explanation": "The cricket pitch is 22 yards (20.12 meters) long.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q25",
+    "question": "Which bowler holds the record for the best bowling figures in an ODI innings?",
+    "options": ["Chaminda Vaas", "Glenn McGrath", "Muttiah Muralitharan", "Stuart Broad"],
+    "correctIndex": 0,
+    "explanation": "Chaminda Vaas took 8 wickets for 19 runs against Zimbabwe in 2001.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "q26",
+    "question": "What is a 'free hit' in cricket?",
+    "options": ["A delivery after a wide", "A delivery after a no-ball where the batsman cannot be bowled or LBW", "An extra delivery at the end of an over", "A ball that doesn't count"],
+    "correctIndex": 1,
+    "explanation": "A free hit is awarded after a no-ball, and the batsman cannot be dismissed in most ways.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q27",
+    "question": "Which country introduced the concept of T20 cricket?",
+    "options": ["Australia", "India", "England", "South Africa"],
+    "correctIndex": 2,
+    "explanation": "England's ECB introduced T20 cricket in 2003.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "q28",
+    "question": "What does 'mankading' refer to?",
+    "options": ["A type of bowling action", "Running out the non-striker before delivery", "A batting technique", "A fielding strategy"],
+    "correctIndex": 1,
+    "explanation": "Mankading is when the bowler runs out the non-striker for backing up too far, named after Vinoo Mankad.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "q29",
+    "question": "Who has scored the most runs in T20 International cricket?",
+    "options": ["Virat Kohli", "Rohit Sharma", "Babar Azam", "Martin Guptill"],
+    "correctIndex": 1,
+    "explanation": "Rohit Sharma holds the record for most runs in T20Is.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "q30",
+    "question": "What is the term for when a batsman scores zero runs?",
+    "options": ["Null", "Zero", "Duck", "Blank"],
+    "correctIndex": 2,
+    "explanation": "A 'duck' means the batsman was dismissed without scoring any runs.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "q31",
+    "question": "Which team scored 481/6 — the highest total in ODI history?",
+    "options": ["Australia", "England", "India", "South Africa"],
+    "correctIndex": 1,
+    "explanation": "England scored 481/6 against Australia in 2022, the highest ODI total.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "q32",
+    "question": "What is the 'silly point' in cricket?",
+    "options": ["A penalty area", "A close-in fielding position", "A type of delivery", "A batting stance"],
+    "correctIndex": 1,
+    "explanation": "Silly point is a close fielding position on the off side, very near the batsman.",
+    "difficulty": "medium"
+  }
+]
