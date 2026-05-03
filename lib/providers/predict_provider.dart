@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../models/prediction.dart';
-import '../providers/live_scores_provider.dart';
+import 'live_scores_provider.dart';
+import '../services/prediction_service.dart';
 
 class PredictProvider extends ChangeNotifier {
   LiveScoresProvider? _liveProvider;
+  final PredictionService _predictionService = PredictionService();
   final List<Prediction> _predictions = [];
   PredictionStats _stats = const PredictionStats();
   BallOutcome? _pendingPrediction;
@@ -17,6 +19,9 @@ class PredictProvider extends ChangeNotifier {
   String _currentOverInfo = 'Over 22.4';
   String _currentBowler = 'Bumrah';
   String _currentBatsman = 'Warner';
+
+  // Active Supabase round
+  String? _activeRoundId;
 
   List<Prediction> get predictions => List.unmodifiable(_predictions);
   PredictionStats get stats => _stats;
@@ -32,6 +37,31 @@ class PredictProvider extends ChangeNotifier {
   void setLiveProvider(LiveScoresProvider provider) {
     _liveProvider = provider;
     _updateMatchContext();
+    _loadStats();
+    _checkForOpenRound();
+  }
+
+  /// Load prediction stats from Supabase user_stats.
+  Future<void> _loadStats() async {
+    final data = await _predictionService.getUserStats();
+    if (data != null) {
+      _stats = PredictionStats.fromSupabase(data);
+      notifyListeners();
+    }
+  }
+
+  /// Check if there's an open prediction round for the current match.
+  Future<void> _checkForOpenRound() async {
+    final round = await _predictionService.getOpenRound(_currentMatchId);
+    if (round != null) {
+      _activeRoundId = round['id'] as String;
+      final overNum = round['over_number'] as int?;
+      final ballNum = round['ball_number'] as int?;
+      if (overNum != null && ballNum != null) {
+        _currentOverInfo = 'Over $overNum.$ballNum';
+      }
+      notifyListeners();
+    }
   }
 
   void _updateMatchContext() {
@@ -58,6 +88,14 @@ class PredictProvider extends ChangeNotifier {
     _pendingPrediction = outcome;
     _waitingForResult = true;
     notifyListeners();
+
+    // Submit to Supabase if there's an active round
+    if (_activeRoundId != null) {
+      _predictionService.submitPrediction(
+        roundId: _activeRoundId!,
+        predictedOutcome: Prediction.toSupabaseOutcome(outcome),
+      );
+    }
 
     // Simulate ball result after a delay
     Future.delayed(const Duration(seconds: 3), () {
@@ -108,6 +146,7 @@ class PredictProvider extends ChangeNotifier {
     _pendingPrediction = null;
     _waitingForResult = false;
     _updateMatchContext();
+    _checkForOpenRound();
     notifyListeners();
   }
 

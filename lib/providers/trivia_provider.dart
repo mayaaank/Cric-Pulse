@@ -12,6 +12,7 @@ class TriviaProvider extends ChangeNotifier {
   int _totalXp = 0;
   int _roundsPlayed = 0;
   bool _loading = false;
+  String? _sessionId;
 
   TriviaRound? get currentRound => _currentRound;
   int get currentQuestionIndex => _currentQuestionIndex;
@@ -43,6 +44,10 @@ class TriviaProvider extends ChangeNotifier {
     _currentQuestionIndex = 0;
     _selectedAnswer = null;
     _answered = false;
+
+    // Create a session in Supabase (returns null if not logged in)
+    _sessionId = await _service.createSession();
+
     _loading = false;
     notifyListeners();
   }
@@ -52,6 +57,24 @@ class TriviaProvider extends ChangeNotifier {
     _selectedAnswer = index;
     _answered = true;
     _currentRound!.answer(currentQuestion!.id, index);
+
+    // Submit answer to Supabase
+    if (_sessionId != null) {
+      final q = currentQuestion!;
+      const letters = ['A', 'B', 'C', 'D'];
+      final selectedLetter = index < letters.length ? letters[index] : 'A';
+      final isCorrect = q.isCorrect(index);
+      final xpEarned = isCorrect ? q.xpReward : 0;
+
+      _service.submitAnswer(
+        sessionId: _sessionId!,
+        questionId: q.id,
+        selectedOption: selectedLetter,
+        isCorrect: isCorrect,
+        xpEarned: xpEarned,
+      );
+    }
+
     notifyListeners();
   }
 
@@ -68,6 +91,15 @@ class TriviaProvider extends ChangeNotifier {
   void finishRound() {
     if (_currentRound != null) {
       _totalXp += _currentRound!.score;
+
+      // Complete the session in Supabase
+      if (_sessionId != null) {
+        _service.completeSession(
+          sessionId: _sessionId!,
+          score: _currentRound!.score,
+        );
+      }
+
       notifyListeners();
     }
   }
@@ -77,6 +109,7 @@ class TriviaProvider extends ChangeNotifier {
     _currentQuestionIndex = 0;
     _selectedAnswer = null;
     _answered = false;
+    _sessionId = null;
     notifyListeners();
   }
 }

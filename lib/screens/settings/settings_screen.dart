@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../providers/auth_provider.dart';
 import '../../providers/settings_provider.dart';
 import '../../widgets/glass_card.dart';
 
@@ -11,8 +12,14 @@ class SettingsScreen extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final tt = Theme.of(context).textTheme;
 
-    return Consumer<SettingsProvider>(
-      builder: (context, prov, _) {
+    return Consumer2<SettingsProvider, AuthProvider>(
+      builder: (context, prov, auth, _) {
+        final profile = auth.profile;
+        final displayName = profile?.displayName ?? profile?.username ?? 'Cricket Fan';
+        final xpText = profile != null
+            ? 'Level ${profile.level} • ${profile.totalXp} XP'
+            : 'Level 12 • 6,800 XP';
+
         return Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(title: const Text('Settings')),
@@ -27,20 +34,30 @@ class SettingsScreen extends StatelessWidget {
                     CircleAvatar(
                       radius: 30,
                       backgroundColor: cs.primaryContainer,
-                      child: Icon(Icons.person, color: Colors.white, size: 32),
+                      child: Text(
+                        displayName.isNotEmpty ? displayName[0].toUpperCase() : '?',
+                        style: tt.headlineMedium!.copyWith(color: Colors.white),
+                      ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Cricket Fan', style: tt.titleMedium),
+                          Text(displayName, style: tt.titleMedium),
                           const SizedBox(height: 4),
-                          Text('Level 12 • 6,800 XP', style: tt.bodySmall),
+                          Text(xpText, style: tt.bodySmall),
                         ],
                       ),
                     ),
-                    Icon(Icons.chevron_right, color: cs.onSurfaceVariant),
+                    if (auth.isLoggedIn)
+                      IconButton(
+                        onPressed: () => _confirmSignOut(context, auth),
+                        icon: Icon(Icons.logout, color: cs.error),
+                        tooltip: 'Sign Out',
+                      )
+                    else
+                      Icon(Icons.chevron_right, color: cs.onSurfaceVariant),
                   ],
                 ),
               ),
@@ -126,6 +143,29 @@ class SettingsScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  void _confirmSignOut(BuildContext context, AuthProvider auth) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Sign Out'),
+        content: const Text('Are you sure you want to sign out?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              auth.signOut();
+            },
+            child: const Text('Sign Out'),
+          ),
+        ],
+      ),
     );
   }
 }

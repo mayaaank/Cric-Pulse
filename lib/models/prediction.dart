@@ -54,6 +54,39 @@ class Prediction {
         return '1, 2 or 3';
     }
   }
+
+  /// Convert BallOutcome to a Supabase-compatible string.
+  static String toSupabaseOutcome(BallOutcome outcome) {
+    switch (outcome) {
+      case BallOutcome.dot:
+        return 'dot';
+      case BallOutcome.boundary:
+        return 'four'; // maps to four/six
+      case BallOutcome.wicket:
+        return 'wicket';
+      case BallOutcome.runs:
+        return 'single'; // maps to 1/2/3
+    }
+  }
+
+  /// Parse a Supabase outcome string to a BallOutcome.
+  static BallOutcome fromSupabaseOutcome(String outcome) {
+    switch (outcome) {
+      case 'dot':
+        return BallOutcome.dot;
+      case 'four':
+      case 'six':
+        return BallOutcome.boundary;
+      case 'wicket':
+        return BallOutcome.wicket;
+      case 'single':
+      case 'double':
+      case 'triple':
+        return BallOutcome.runs;
+      default:
+        return BallOutcome.dot;
+    }
+  }
 }
 
 class PredictionStats {
@@ -93,6 +126,17 @@ class PredictionStats {
       totalXp: totalXp ?? this.totalXp,
       currentStreak: currentStreak ?? this.currentStreak,
       bestStreak: bestStreak ?? this.bestStreak,
+    );
+  }
+
+  /// Build from Supabase `user_stats` row.
+  factory PredictionStats.fromSupabase(Map<String, dynamic> map) {
+    return PredictionStats(
+      totalPredictions: map['predictions_total'] as int? ?? 0,
+      correctPredictions: map['predictions_correct'] as int? ?? 0,
+      totalXp: 0, // XP is on the profile
+      currentStreak: map['current_streak'] as int? ?? 0,
+      bestStreak: map['best_streak'] as int? ?? 0,
     );
   }
 }

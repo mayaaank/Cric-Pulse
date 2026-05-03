@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'theme/app_theme.dart';
 import 'screens/shell_screen.dart';
 import 'screens/match_detail/match_detail_screen.dart';
 import 'screens/predict/predict_screen.dart';
@@ -8,6 +7,7 @@ import 'screens/trivia/trivia_screen.dart';
 import 'screens/polls/polls_screen.dart';
 import 'screens/chat/chat_screen.dart';
 import 'screens/leaderboard/leaderboard_screen.dart';
+import 'theme/app_theme.dart';
 
 class CricPulseApp extends StatelessWidget {
   const CricPulseApp({super.key});
